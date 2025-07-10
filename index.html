@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero Kanban con Flujo de Información</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Tablero Kanban del Equipo</h1>
+        <p>Visibilidad y Flujo de Información entre Turnos</p>
+    </header>
+
+    <main class="kanban-board">
+        <div class="kanban-list" id="list-backlog">
+            <div class="list-header">
+                <h2>Backlog / Por Hacer</h2>
+                <span class="wip-limit">∞</span>
+            </div>
+            <div class="list-cards"></div>
+            <button class="add-card-btn" data-list-id="backlog">+ Añadir Tarea</button>
+        </div>
+
+        <div class="kanban-list" id="list-wip">
+            <div class="list-header">
+                <h2>En Progreso</h2>
+                <span class="wip-limit" data-limit="2">2</span>
+            </div>
+            <div class="list-cards"></div>
+            <button class="add-card-btn" data-list-id="wip">+ Añadir Tarea</button>
+        </div>
+
+        <div class="kanban-list" id="list-review">
+            <div class="list-header">
+                <h2>Pendiente de Revisión</h2>
+                <span class="wip-limit">∞</span>
+            </div>
+            <div class="list-cards"></div>
+            <button class="add-card-btn" data-list-id="review">+ Añadir Tarea</button>
+        </div>
+
+        <div class="kanban-list" id="list-done">
+            <div class="list-header">
+                <h2>Hecho</h2>
+                <span class="wip-limit">∞</span>
+            </div>
+            <div class="list-cards"></div>
+            <button class="add-card-btn" data-list-id="done">+ Añadir Tarea</button>
+        </div>
+    </main>
+
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalTitle">Añadir Nueva Tarea</h2>
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+                <input type="hidden" id="currentListId"> <label for="taskTitle">Título:</label>
+                <input type="text" id="taskTitle" required>
+
+                <label for="taskDescription">Descripción:</label>
+                <textarea id="taskDescription" rows="3"></textarea>
+
+                <label for="taskAssigned">Asignado a:</label>
+                <input type="text" id="taskAssigned">
+
+                <label for="taskPriority">Prioridad:</label>
+                <input type="text" id="taskPriority">
+
+                <div id="commentsSection">
+                    <label for="taskComments">Historial de Comentarios:</label>
+                    <textarea id="taskComments" rows="5" readonly class="comments-history"></textarea>
+                    <label for="newComment">Nuevo Comentario (al mover o editar):</label>
+                    <textarea id="newComment" rows="3"></textarea>
+                </div>
+
+                <button type="submit" id="saveTaskButton">Guardar Tarea</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
